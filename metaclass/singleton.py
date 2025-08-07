@@ -14,11 +14,9 @@ class Singleton(type):
 
 	def __init__(self, *args, **kwargs):
 		self.__instance = None
-		self.__test = 1
 		super(Singleton, self).__init__(*args, **kwargs)
 
 	def __call__(cls, *args, **kwargs):
-		print("call", cls)
 		if cls.__instance is None:
 			obj = cls.__new__(cls, *args, **kwargs)
 			obj.__init__(*args, **kwargs)
@@ -26,6 +24,7 @@ class Singleton(type):
 		return cls.__instance
 
 
+# 用法及测试用例
 class CTest:
 	__metaclass__ = Singleton
 
