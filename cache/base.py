@@ -20,7 +20,7 @@ class CCacheListIter:
 		self.head = cache_list.head
 		self.current = self.head.next
 	
-	def next(self):
+	def __next__(self):
 		if self.current == self.head:
 			# 意味着缓存列表已经遍历完毕
 			raise StopIteration()
@@ -49,7 +49,7 @@ class CCacheList:
 
 	def __iter__(self):
 		"""
-		# 返回迭代器对象, 使得变成迭代器, 成为可迭代对象
+		# 返回迭代器对象, 使CCacheList变成迭代器, 成为可迭代对象
 		# 使缓存项可以遍历
 		"""
 		return CCacheListIter(self)
@@ -63,7 +63,7 @@ class CCacheList:
 		if self.item_count >= self.max_count:
 			self._DoLRU()
 		new_item = CCacheItem(obj)
-		self._AddTotail(new_item)
+		self._AddToTail(new_item)
 		self.item_count += 1
 		return new_item
 
